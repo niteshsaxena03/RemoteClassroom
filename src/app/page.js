@@ -76,7 +76,7 @@ export default function Welcome() {
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6">
               <span className="gradient-text">Learn.</span>{" "}
-              <span className="gradient-text">Create.</span>{" "}
+              <span className="gradient-text">Grow.</span>{" "}
               <span className="gradient-text">Excel.</span>
             </h1>
 
