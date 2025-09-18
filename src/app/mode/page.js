@@ -5,14 +5,14 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useRouter } from "next/navigation";
 
 export default function Mode() {
-  const { updateUserMode, logout } = useAuth();
+  const { setSessionMode, logout } = useAuth();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleModeSelection = (mode) => {
     setIsLoading(true);
     try {
-      updateUserMode(mode);
+      setSessionMode(mode);
 
       if (mode === "self-pace") {
         router.push("/dashboard");

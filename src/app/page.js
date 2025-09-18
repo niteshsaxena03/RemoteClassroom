@@ -10,15 +10,11 @@ export default function Welcome() {
   const router = useRouter();
 
   useEffect(() => {
-    // Redirect authenticated users
+    // Redirect authenticated users - always go to mode selection
     if (currentUser) {
-      if (userProfile?.mode) {
-        router.push("/dashboard");
-      } else {
-        router.push("/mode");
-      }
+      router.push("/mode");
     }
-  }, [currentUser, userProfile, router]);
+  }, [currentUser, router]);
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="max-w-md w-full space-y-8 text-center">

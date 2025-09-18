@@ -14,13 +14,7 @@ export default function Dashboard() {
       router.push("/login");
       return;
     }
-
-    // Redirect to mode selection if mode not selected
-    if (userProfile && !userProfile.mode) {
-      router.push("/mode");
-      return;
-    }
-  }, [currentUser, userProfile, router]);
+  }, [currentUser, router]);
 
   const handleLogout = async () => {
     try {
@@ -57,8 +51,20 @@ export default function Dashboard() {
           <div className="flex items-center space-x-4">
             <span className="text-sm text-gray-400">
               Mode:{" "}
-              <span className="text-green-400 font-medium">Self-Pace</span>
+              <span className="text-green-400 font-medium">
+                {userProfile?.currentMode === "self-pace"
+                  ? "Self-Pace"
+                  : userProfile?.currentMode === "ai-tutor"
+                    ? "AI Tutor"
+                    : "Selected"}
+              </span>
             </span>
+            <button
+              onClick={() => router.push("/mode")}
+              className="text-blue-400 hover:text-blue-300 transition-colors text-sm"
+            >
+              Switch Mode
+            </button>
             <button
               onClick={handleLogout}
               className="text-gray-400 hover:text-gray-300 transition-colors"

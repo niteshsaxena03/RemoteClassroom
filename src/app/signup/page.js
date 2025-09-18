@@ -16,15 +16,11 @@ export default function Signup() {
   const router = useRouter();
 
   useEffect(() => {
-    // Redirect if user is already authenticated
+    // Redirect if user is already authenticated - always go to mode selection
     if (currentUser) {
-      if (userProfile?.mode) {
-        router.push("/dashboard");
-      } else {
-        router.push("/mode");
-      }
+      router.push("/mode");
     }
-  }, [currentUser, userProfile, router]);
+  }, [currentUser, router]);
 
   async function handleSubmit(e) {
     e.preventDefault();

@@ -39,13 +39,12 @@ export function AuthProvider({ children }) {
         displayName: fullName,
       });
 
-      // Create user profile in localStorage
+      // Create user profile in localStorage (without mode storage)
       const userProfile = {
         fullName: fullName,
         email: email,
         createdAt: new Date().toISOString(),
         courses: [],
-        mode: null, // Will be set when user chooses mode
       };
 
       localStorage.setItem(
@@ -90,32 +89,13 @@ export function AuthProvider({ children }) {
     }
   }
 
-  // Update user mode (Self-Pace or AI Tutor)
-  function updateUserMode(mode) {
-    try {
-      if (currentUser) {
-        const existingProfile = getUserProfile(currentUser.uid) || {};
-        const updatedProfile = {
-          ...existingProfile,
-          mode: mode,
-          modeSelectedAt: new Date().toISOString(),
-        };
-
-        localStorage.setItem(
-          `userProfile_${currentUser.uid}`,
-          JSON.stringify(updatedProfile)
-        );
-
-        // Update local state
-        setUserProfile((prev) => ({
-          ...prev,
-          mode: mode,
-        }));
-      }
-    } catch (error) {
-      console.error("Error updating user mode:", error);
-      throw error;
-    }
+  // Set current session mode (not persisted)
+  function setSessionMode(mode) {
+    // Just update local state for current session only
+    setUserProfile((prev) => ({
+      ...prev,
+      currentMode: mode,
+    }));
   }
 
   useEffect(() => {
@@ -142,7 +122,7 @@ export function AuthProvider({ children }) {
     signup,
     login,
     logout,
-    updateUserMode,
+    setSessionMode,
     getUserProfile,
   };
 
