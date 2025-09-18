@@ -8,8 +8,7 @@ import {
   onAuthStateChanged,
   updateProfile,
 } from "firebase/auth";
-import { doc, setDoc, getDoc } from "firebase/firestore";
-import { auth, db } from "../lib/firebase";
+import { auth } from "../lib/firebase";
 
 const AuthContext = createContext();
 
@@ -40,14 +39,19 @@ export function AuthProvider({ children }) {
         displayName: fullName,
       });
 
-      // Create user profile in Firestore
-      await setDoc(doc(db, "users", result.user.uid), {
+      // Create user profile in localStorage
+      const userProfile = {
         fullName: fullName,
         email: email,
         createdAt: new Date().toISOString(),
         courses: [],
         mode: null, // Will be set when user chooses mode
-      });
+      };
+
+      localStorage.setItem(
+        `userProfile_${result.user.uid}`,
+        JSON.stringify(userProfile)
+      );
 
       return result;
     } catch (error) {
@@ -75,18 +79,11 @@ export function AuthProvider({ children }) {
     }
   }
 
-  // Get user profile from Firestore
-  async function getUserProfile(uid) {
+  // Get user profile from localStorage
+  function getUserProfile(uid) {
     try {
-      const docRef = doc(db, "users", uid);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        return docSnap.data();
-      } else {
-        console.log("No user profile found!");
-        return null;
-      }
+      const profile = localStorage.getItem(`userProfile_${uid}`);
+      return profile ? JSON.parse(profile) : null;
     } catch (error) {
       console.error("Error fetching user profile:", error);
       return null;
@@ -94,16 +91,19 @@ export function AuthProvider({ children }) {
   }
 
   // Update user mode (Self-Pace or AI Tutor)
-  async function updateUserMode(mode) {
+  function updateUserMode(mode) {
     try {
       if (currentUser) {
-        await setDoc(
-          doc(db, "users", currentUser.uid),
-          {
-            mode: mode,
-            modeSelectedAt: new Date().toISOString(),
-          },
-          { merge: true }
+        const existingProfile = getUserProfile(currentUser.uid) || {};
+        const updatedProfile = {
+          ...existingProfile,
+          mode: mode,
+          modeSelectedAt: new Date().toISOString(),
+        };
+
+        localStorage.setItem(
+          `userProfile_${currentUser.uid}`,
+          JSON.stringify(updatedProfile)
         );
 
         // Update local state
@@ -119,12 +119,12 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
 
       if (user) {
         // Fetch user profile when user is authenticated
-        const profile = await getUserProfile(user.uid);
+        const profile = getUserProfile(user.uid);
         setUserProfile(profile);
       } else {
         setUserProfile(null);

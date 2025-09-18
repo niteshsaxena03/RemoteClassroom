@@ -9,10 +9,10 @@ export default function Mode() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleModeSelection = async (mode) => {
+  const handleModeSelection = (mode) => {
     setIsLoading(true);
     try {
-      await updateUserMode(mode);
+      updateUserMode(mode);
 
       if (mode === "self-pace") {
         router.push("/dashboard");
