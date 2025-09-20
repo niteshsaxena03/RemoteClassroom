@@ -374,7 +374,7 @@ export default function Dashboard() {
                   JavaScript Fundamentals
                 </h3>
                 <p className="text-gray-300 text-sm mb-4 leading-relaxed">
-                  You're making great progress! Keep going to master JavaScript
+                  You&apos;re making great progress! Keep going to master JavaScript
                   basics.
                 </p>
 
@@ -429,7 +429,10 @@ export default function Dashboard() {
                       <span>3h left</span>
                     </span>
                   </div>
-                  <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors group-hover:shadow-lg group-hover:shadow-green-500/20">
+                  <button
+                  onClick={() => router.push(`/dashboard/course/${"course_py_001"}/${"v11"}`)}
+                  className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors group-hover:shadow-lg group-hover:shadow-green-500/20 cursor-pointer"
+                  >
                     Continue
                   </button>
                 </div>

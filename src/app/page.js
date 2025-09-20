@@ -16,7 +16,7 @@ export default function Welcome() {
     }
   }, [currentUser, router]);
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen relative">
       {/* Animated Background */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-72 h-72 bg-blue-500/10 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
