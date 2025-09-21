@@ -25,7 +25,7 @@ export default function Dashboard() {
     }
   };
 
-  if (!currentUser || !userProfile) {
+  if (!currentUser) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -44,7 +44,7 @@ export default function Dashboard() {
           <div>
             <h1 className="text-3xl font-bold gradient-text">Dashboard</h1>
             <p className="text-gray-400 mt-1">
-              Welcome back, {userProfile?.fullName || currentUser.displayName}!
+              Welcome back, {userProfile?.fullName || currentUser?.displayName || currentUser?.email || 'User'}!
             </p>
           </div>
 
@@ -55,8 +55,8 @@ export default function Dashboard() {
                 {userProfile?.currentMode === "self-pace"
                   ? "Self-Pace"
                   : userProfile?.currentMode === "ai-tutor"
-                    ? "AI Tutor"
-                    : "Selected"}
+                    ? "AI Quiz"
+                    : "Not Selected"}
               </span>
             </span>
             <button

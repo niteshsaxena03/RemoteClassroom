@@ -118,7 +118,9 @@ export function AuthProvider({ children }) {
 
   const value = {
     currentUser,
+    user: currentUser, // Add alias for compatibility
     userProfile,
+    loading, // Export loading state
     signup,
     login,
     logout,
