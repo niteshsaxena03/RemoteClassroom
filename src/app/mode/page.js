@@ -77,7 +77,7 @@ export default function Mode() {
               Choose Your Learning Mode
             </h1>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-              Select how you'd like to learn. You can always change this later.
+              Select how you&apos;d like to learn. You can always change this later.
             </p>
           </div>
         </div>

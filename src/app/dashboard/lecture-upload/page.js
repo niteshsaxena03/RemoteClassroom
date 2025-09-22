@@ -1,6 +1,6 @@
 "use client";
 
-import FileUpload from '@/components/FileUpload';
+import FileUpload from '../../../components/FileUpload.jsx';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
