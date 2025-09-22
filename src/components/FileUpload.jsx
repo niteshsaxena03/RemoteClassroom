@@ -6,13 +6,7 @@ import { upload } from "@imagekit/next";
 // eslint-disable-next-line import/no-unresolved
 // import { apiClient } from "@/lib/api-client";
 
-/**
- * @param {{
- *  onSuccess: (resp: unknown) => void,
- *  onProgress?: (progress: number) => void,
- *  fileType: 'image' | 'video'
- * }} props
- */
+
 export default function FileUpload({ onSuccess, onProgress, fileType }) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(null);

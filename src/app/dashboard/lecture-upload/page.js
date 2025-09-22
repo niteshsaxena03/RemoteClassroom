@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import FileUpload from '@/components/FileUpload';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+
 
 export default function LectureUpload() {
   const router = useRouter();
