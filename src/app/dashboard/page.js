@@ -75,7 +75,7 @@ export default function Dashboard() {
         </header>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
           <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-500/30 rounded-2xl p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -146,6 +146,36 @@ export default function Dashboard() {
                     strokeLinejoin="round"
                     strokeWidth={2}
                     d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          {/* AI Doubt Solving Card */}
+          <div 
+            className="bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-orange-500/30 rounded-2xl p-6 cursor-pointer hover:scale-105 transition-transform"
+            onClick={() => router.push('/doubt-solving')}
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-orange-400 text-sm font-medium">
+                  AI Tutor
+                </p>
+                <p className="text-xl font-bold text-white mt-1">Available</p>
+              </div>
+              <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center">
+                <svg
+                  className="w-6 h-6 text-orange-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
                   />
                 </svg>
               </div>
@@ -448,6 +478,126 @@ export default function Dashboard() {
                   <div className="text-2xl font-bold text-white mb-1">5.2h</div>
                   <div className="text-sm text-gray-400">Time Spent</div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* AI Features Section */}
+        <div className="mt-12">
+          <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
+            <svg
+              className="w-6 h-6 text-purple-400 mr-3"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              />
+            </svg>
+            AI Learning Tools
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* AI Quiz Generator */}
+            <div 
+              className="bg-gradient-to-br from-indigo-500/20 to-purple-500/20 border border-indigo-500/30 rounded-2xl p-6 cursor-pointer hover:scale-105 transition-transform"
+              onClick={() => router.push('/ai-quiz')}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-12 h-12 bg-indigo-500/20 rounded-xl flex items-center justify-center">
+                  <svg
+                    className="w-6 h-6 text-indigo-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <span className="px-3 py-1 bg-indigo-500/20 text-indigo-300 text-xs font-medium rounded-full">
+                  AI Powered
+                </span>
+              </div>
+              
+              <h3 className="text-xl font-semibold text-white mb-2">AI Quiz Generator</h3>
+              <p className="text-gray-400 mb-4">
+                Generate personalized quizzes with AI. Test your knowledge across various topics with intelligent question generation.
+              </p>
+              
+              <div className="flex items-center text-indigo-400 font-medium">
+                <span>Start Quiz</span>
+                <svg
+                  className="w-4 h-4 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            {/* AI Doubt Solving */}
+            <div 
+              className="bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-orange-500/30 rounded-2xl p-6 cursor-pointer hover:scale-105 transition-transform"
+              onClick={() => router.push('/doubt-solving')}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center">
+                  <svg
+                    className="w-6 h-6 text-orange-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
+                    />
+                  </svg>
+                </div>
+                <span className="px-3 py-1 bg-orange-500/20 text-orange-300 text-xs font-medium rounded-full">
+                  Voice AI
+                </span>
+              </div>
+              
+              <h3 className="text-xl font-semibold text-white mb-2">AI Tutor</h3>
+              <p className="text-gray-400 mb-4">
+                Get instant help with your doubts. Voice-powered AI tutor provides explanations and solutions in real-time.
+              </p>
+              
+              <div className="flex items-center text-orange-400 font-medium">
+                <span>Ask AI Tutor</span>
+                <svg
+                  className="w-4 h-4 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
               </div>
             </div>
           </div>

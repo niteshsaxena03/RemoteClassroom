@@ -250,6 +250,90 @@ export default function Take() {
           </div>
         </section>
 
+        {/* AI Learning Tools */}
+        <section className="w-full rounded-lg border border-[#1f2937]/60 bg-[#111827]/70 p-6">
+          <h4 className="font-semibold mb-4 flex items-center">
+            <svg
+              className="w-5 h-5 text-purple-400 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              />
+            </svg>
+            AI Learning Assistant
+          </h4>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* AI Quiz Generator */}
+            <div 
+              className="bg-gradient-to-br from-indigo-500/20 to-purple-500/20 border border-indigo-500/30 rounded-xl p-4 cursor-pointer hover:scale-105 transition-transform"
+              onClick={() => router.push('/ai-quiz')}
+            >
+              <div className="flex items-center mb-3">
+                <div className="w-10 h-10 bg-indigo-500/20 rounded-lg flex items-center justify-center mr-3">
+                  <svg
+                    className="w-5 h-5 text-indigo-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h5 className="font-medium text-white">AI Quiz</h5>
+                  <p className="text-xs text-indigo-300">Test your knowledge</p>
+                </div>
+              </div>
+              <p className="text-sm text-gray-400">
+                Generate personalized quizzes based on this topic to reinforce your learning.
+              </p>
+            </div>
+
+            {/* AI Doubt Solving */}
+            <div 
+              className="bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-orange-500/30 rounded-xl p-4 cursor-pointer hover:scale-105 transition-transform"
+              onClick={() => router.push('/doubt-solving')}
+            >
+              <div className="flex items-center mb-3">
+                <div className="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center mr-3">
+                  <svg
+                    className="w-5 h-5 text-orange-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h5 className="font-medium text-white">Ask AI Tutor</h5>
+                  <p className="text-xs text-orange-300">Voice-powered help</p>
+                </div>
+              </div>
+              <p className="text-sm text-gray-400">
+                Get instant help with your doubts using our voice-powered AI tutor.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Comments */}
         <section className="w-full min-h-[220px] rounded-lg border border-[#1f2937]/60 bg-[#111827]/60 p-4 overflow-y-scroll custom-scroll">
           <h4 className="font-semibold mb-3">Comments</h4>
