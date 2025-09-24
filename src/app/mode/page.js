@@ -5,22 +5,34 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useRouter } from "next/navigation";
 
 export default function Mode() {
-  const { setSessionMode, logout } = useAuth();
+  const { setSessionMode, logout, currentUser } = useAuth();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleModeSelection = (mode) => {
+    console.log('Mode selection:', mode, 'User:', currentUser?.email);
+    
+    // Check if user is authenticated before proceeding
+    if (!currentUser) {
+      alert("Please log in first");
+      router.push("/login");
+      return;
+    }
+    
     setIsLoading(true);
     try {
       setSessionMode(mode);
 
       if (mode === "self-pace") {
         router.push("/dashboard");
+      } else if (mode === "ai-tutor") {
+        console.log('Navigating to AI Quiz with user:', currentUser.email);
+        // Use setTimeout to ensure state is set
+        setTimeout(() => {
+          router.push("/ai-quiz");
+        }, 100);
       } else {
-        // AI Tutor is placeholder for now
-        alert(
-          "AI Tutor mode is coming soon! Please select Self-Pace mode for now."
-        );
+        alert("Invalid mode selection. Please try again.");
         setIsLoading(false);
       }
     } catch (error) {
@@ -65,7 +77,7 @@ export default function Mode() {
               Choose Your Learning Mode
             </h1>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-              Select how you'd like to learn. You can always change this later.
+              Select how you&apos;d like to learn. You can always change this later.
             </p>
           </div>
         </div>
@@ -156,7 +168,7 @@ export default function Mode() {
           </div>
 
           {/* AI Tutor Mode */}
-          <div className="bg-gray-800/50 border border-gray-700 rounded-2xl p-8 space-y-6 hover:border-blue-500/50 transition-all duration-300 opacity-75">
+          <div className="bg-gray-800/50 border border-gray-700 rounded-2xl p-8 space-y-6 hover:border-blue-500/50 transition-all duration-300">
             <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mx-auto">
               <svg
                 className="w-8 h-8 text-white"
@@ -174,11 +186,9 @@ export default function Mode() {
             </div>
 
             <div className="space-y-3">
-              <h3 className="text-2xl font-bold text-blue-400">AI Tutor</h3>
+              <h3 className="text-2xl font-bold text-blue-400">AI Quiz Mode</h3>
               <p className="text-gray-300">
-                Get personalized learning with AI-powered tutoring. Ask
-                questions, get instant feedback, and receive customized learning
-                paths.
+                Take AI-generated quizzes on various topics. Test your knowledge with personalized questions and get instant feedback with detailed analysis.
               </p>
             </div>
 
@@ -195,7 +205,7 @@ export default function Mode() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span>Personalized learning</span>
+                <span>AI-generated questions</span>
               </li>
               <li className="flex items-center space-x-2">
                 <svg
@@ -209,7 +219,7 @@ export default function Mode() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span>AI-powered assistance</span>
+                <span>Instant feedback & analysis</span>
               </li>
               <li className="flex items-center space-x-2">
                 <svg
@@ -223,16 +233,16 @@ export default function Mode() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span>Instant feedback</span>
+                <span>Multiple topics available</span>
               </li>
             </ul>
 
             <button
               onClick={() => handleModeSelection("ai-tutor")}
-              disabled={true}
-              className="w-full py-3 px-6 text-white font-semibold rounded-xl btn-secondary text-lg disabled:opacity-50 cursor-not-allowed"
+              disabled={isLoading}
+              className="w-full py-3 px-6 text-white font-semibold rounded-xl btn-primary text-lg disabled:opacity-50"
             >
-              Coming Soon
+              {isLoading ? "Setting up..." : "Start AI Quiz"}
             </button>
           </div>
         </div>
